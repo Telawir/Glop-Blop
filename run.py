@@ -18,17 +18,107 @@ async def on_ready():
     print("Username: %s"%client.user.name)
     print("ID: %s"%client.user.id)
     print("----------------------")
-          
+
+@client.event
+async def on_message(message):
+    server = message.server
+    server.id = message.server.id
+    mutedrole = discord.utils.get(server.roles,name="Muted")
+    warningrole = discord.utils.get(server.roles,name="Warning")
+    kergo = message.channel
+    kergo = client.get_channel("433644659018039296")
+
+    date = datetime.now().strftime("**Date: **%A, %B %d, %Y\n**Time: **%I:%M:%S %p")
+    
+    await client.change_presence(game=discord.Game(name="Don't ping the devs"))       
+    if any(word in message.content for word in["<@224809879884398592>", "<@354641560979111936>", "<@371976663098982400>", "<@311130875461107722>", "<@334269708268470293>", "<@163270868938653698>", "<@281067479927881740>", "<@405654489987547146>", "<@197130820975067137>", "<@249187671912611840>", "<@146009550699364352>", "<@258540501261746176>", "<@300978444962103296>"]):
+        user_roles = [r.name.lower() for r in message.author.roles]
+        belo = int(server.id)
+        mem = str(message.author)
+        memid = str(message.author.id)
+                
+        if belo == 359426518730145802:
+            if message.author.server_permissions.ban_members == False:
+                try:
+                    await client.send_message(kergo, str(server) + server.id + '\n' + "**User:** " + mem + " " + memid + '\n' + date)
+                except:
+                    pass
+                try:
+                    msg = await client.send_message(message.channel, "Don't ping the devs," + " " + str(mem) + " with userid " + str(memid))                    
+                except Exception as e:
+                    print(e)
+                    return
+        else:         
+            if not any(r in user_roles for r in["senior maud", "developer", "quality assurance", "community manager", "kogama staff", "nubmins"]):
+                try:
+                    msg = await client.send_message(message.channel, "Don't ping the devs," + " " + str(mem) + " with userid " + str(memid))                   
+                except Exception as e:
+                    print(e)
+
+                if "warning" in user_roles:
+                    try:
+                        await client.add_roles(message.author, mutedrole)
+                    except:
+                        try:
+                            await client.send_message(kergo, "Server: " + str(server) + ", server id: " + server.id + '\n' + "**User:** " + mem + " " + memid + '\n' + date + '\n' + "**Punishment:** ~~Mute~~ / exeption occured - no punishment")
+                        except:
+                            pass
+                        norolemuted = await client.send_message(message.channel, "``` I can't find Muted role, it's the higher rank than my highest role or I don't have permission to manage roles."  + '\n' + "-- This message will be deleted automatically in 30 seconds. --```")
+                        await asyncio.sleep(30)
+                        try:
+                            await client.delete_message(norolemuted)
+                        except:
+                            return
+                        return
+                    try:
+                        await client.send_message(kergo, "Server: " + str(server) + ", server id: " + server.id + '\n' + "**User:** " + mem + " " + memid + '\n' + date + '\n' + "**Punishment:** Mute")
+                    except:
+                        pass
+                    warn = await client.send_message(message.channel, message.author.mention + ", you have been muted for disregarding the previous warning and pinging the developer.")
+                    try:
+                        await client.remove_roles(message.author, warningrole)
+                    except:
+                        pass
+                    await asyncio.sleep(600)
+                    try:                        
+                        await client.remove_roles(message.author, mutedrole)
+                    except:
+                        return
+                else:
+                    try:
+                        await client.add_roles(message.author, warningrole)
+                    except Exception as e:
+                        try:
+                            await client.send_message(kergo, "Server: " + str(server) + ", server id: " + server.id + '\n' + "**User:** " + mem + " " + memid + '\n' + date + '\n' + "**Punishment:** ~~Warning~~ / exeption occured - no punishment")
+                        except:
+                            pass
+                        norolewarning = await client.send_message(message.channel, "``` I couldn't find Warning role, it's the higher rank than my highest role or I don't have permission to manage roles."  + '\n' + "-- This message will be deleted automatically in 30 seconds. --```")
+                        await asyncio.sleep(30)
+                        try:
+                            await client.delete_message(norolewarning)
+                        except:
+                            return
+                    try:
+                        await client.send_message(kergo, "Server: " + str(server) + ", server id: " + server.id + '\n' + "**User:** " + mem + " " + memid + '\n' + date + '\n' + "**Punishment:** Warning")
+                    except:
+                        pass
+                        
+    await client.process_commands(message)    
+ ###################################################   
+    
+    
 #m1 
 @client.command(pass_context=True)
 async def help(ctx):
-    pref0 = str(prefix)
+    info1 = str("The current bot prefix is **" + str(prefix) + "**"))
+    info2 = str("`If an error occurred while running the command, please contact Superplus#2392`")
     author = ctx.message.author
 #Ordinary BOT COMMANDS   
     m1 = str("**help**               :: Shows this message")
     m2 = str("**ping**               :: Checks if the bot works")
     m3 = str("**setgame**       :: Sets my game (owner only)")
     m4 = str("**botinvite**      :: Gives you a link to invite this bot to your server")
+    m5 = str("**selfdestruct**      :: Self-destruct command")
 #Server commands    
     g1 = str("**serverinvite**         :: Gives you an invitation link to this server")
     g2 = str("**serverbans**          :: Gets a list of banned users")    
@@ -37,7 +127,7 @@ async def help(ctx):
     g5 = str("**roles**               :: Displays a list of all of the server roles")
 #Moderation commands
     t1 = str("**mute @user [lenght]**     :: Mutes a member (requires Mute role)")
-    t2 = str("**unmute @user**                 :: Unmutes a member:")
+    t2 = str("**unmute @user**                 :: Unmutes a member")
     t3 = str("**purge [amount]**              :: Deletes 2-100 messages from the channel")
     t4 = str("**lockdown**                          :: Locks the channel down.")
     t5 = str("**slock**                                  :: Locks all the channels down.")   
@@ -49,13 +139,13 @@ async def help(ctx):
     t11 = str("**soft @user <reason>**    :: Bans and automatically unbans a member, deletes their messages from the last 24h.")
 
 
-    got = str(pref0)     
-    mwot = str(m1 + '\n' + m2 + '\n' + m3 + '\n' + m4) 
+    got = str(info1 + '\n' + info2)     
+    mwot = str(m1 + '\n' + m2 + '\n' + m3 + '\n' + m4 + '\n' + m5) 
     gwot = str(g1 + '\n' + g2 + '\n' + g3 + '\n' + g4)
     twot = str(t1 + '\n' + t2 + '\n' + t3 + '\n' + t4 + '\n' + t5 + '\n' + t6 + '\n' + t7 + '\n' + t8 + '\n' + t9 + '\n' + t10 + '\n' + t11)
     
     join = discord.Embed(title = 'All the available bot commands', description = 'Glop Blop v1.0', colour = 0x0085ff);
-    join.add_field(name = '> Prefix:', value = 'The current bot prefix is **' + str(pref0) + '**');
+    join.add_field(name = '> Info:', value = str(got));
     join.add_field(name = '> Bot:', value = str(mwot));
     join.add_field(name = '> Server:', value = str(gwot));
     join.add_field(name = '> Administration:', value = str(twot));
@@ -94,6 +184,14 @@ async def botinvite():
     await client.say("Check Your Dm's :wink:")
     await client.whisper(link)
 
+#m5
+@client.command(pass_context=True)
+async def selfdestruct():
+    if ctx.message.author.server_permissions.kick_members == True:
+        message = ctx.message
+        await client.say(":boom: Boom :boom:")
+    
+    
 #g1 gets a server invite and pms it to the user who requested it  
 
 @client.command(pass_context = True)
