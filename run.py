@@ -114,11 +114,11 @@ async def help(ctx):
     info2 = str("*If error occurrs while running the command, please contact Superplus#2392*")
     author = ctx.message.author
 #Ordinary BOT COMMANDS   
-    m1 = str("**help**               :: Shows this message")
-    m2 = str("**ping**               :: Checks if the bot works")
-    m3 = str("**setgame**       :: Sets my game (owner only)")
-    m4 = str("**botinvite**      :: Gives you a link to invite this bot to your server")
-    m5 = str("**selfdestruct**      :: Self-destruct command")
+    m1 = str("**help**                  :: Shows this message")
+    m2 = str("**ping**                  :: Checks if the bot works")
+    m3 = str("**setgame**          :: Sets my game (owner only)")
+    m4 = str("**botinvite**         :: Gives you a link to invite this bot to your server")
+    m5 = str("**selfdestruct**    :: Self-destruct command")
 #Server commands    
     g1 = str("**serverinvite**         :: Gives you an invitation link to this server")
     g2 = str("**serverbans**          :: Gets a list of banned users")    
