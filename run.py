@@ -111,7 +111,7 @@ async def on_message(message):
 @client.command(pass_context=True)
 async def help(ctx):
     info1 = str("The current bot prefix is **" + str(prefix) + "**")
-    info2 = str("`If an error occurred while running the command, please contact Superplus#2392`")
+    info2 = str("*If error occurrs while running the command, please contact Superplus#2392*")
     author = ctx.message.author
 #Ordinary BOT COMMANDS   
     m1 = str("**help**               :: Shows this message")
