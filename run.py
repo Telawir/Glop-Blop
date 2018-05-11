@@ -28,7 +28,7 @@ async def on_message(message):
     mutedrole = discord.utils.get(server.roles,name="Muted")
     warningrole = discord.utils.get(server.roles,name="Warning")
     kergo = message.channel
-    kergo = client.get_channel("444569190024871937")
+    kergo = client.get_channel("444589577341108225")
 
     date = datetime.now().strftime("**Date: **%A, %B %d, %Y\n**Time: **%I:%M:%S %p")
     
