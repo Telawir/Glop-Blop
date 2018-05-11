@@ -186,7 +186,7 @@ async def botinvite():
 
 #m5
 @client.command(pass_context=True)
-async def selfdestruct():
+async def selfdestruct(ctx):
     if ctx.message.author.server_permissions.kick_members == True:
         message = ctx.message
         await client.say(":boom: Boom :boom:")
