@@ -1367,64 +1367,7 @@ async def soft(ctx, user: discord.Member = None, *, reason: str = None):
     
  ###############################----------------------########################### 
                                 ##~~~~In DEVELOPMENT ~~~~####
-    
-
-    
-@client.command(pass_context=True, hidden = True)
-async def report(ctx, user: discord.Member, *, reason):
-    """Reports user and sends report to Admin"""
-    user_roles = [r.name.lower() for r in ctx.message.author.roles]
-
-    if "moderator" not in user_roles:
-        return await client.say("You do not have the role: Admin")
-    pass
-
-    author = ctx.message.author
-    server = ctx.message.server
-
-
-    joined_at = user.joined_at
-    user_joined = joined_at.strftime("%d %b %Y %H:%M")
-    joined_on = "{}".format(user_joined)
-
-    args = ''.join(reason)
-    adminlist = []
-    check = lambda r: r.name in 'Admin'
-
-    members = server.members
-    for i in members:
-
-        role = bool(discord.utils.find(check, i.roles))
-
-        if role is True:
-            adminlist.append(i)
-        else:
-            pass
-
-    colour = discord.Colour.magenta()
-
-    description = "User Reported"
-    data = discord.Embed(description=description, colour=colour)
-    data.add_field(name="Report reason", value=reason)
-    data.add_field(name="Report by", value=author)
-    data.add_field(name="Reported user joinned this server on", value=joined_on)
-    data.set_footer(text="User ID:{}"
-                            "".format(user.id))
-
-    name = str(user)
-    name = " ~ ".join((name, user.nick)) if user.nick else name
-
-    if user.avatar_url:
-        data.set_author(name=name, url=user.avatar_url)
-        data.set_thumbnail(url=user.avatar_url)
-    else:
-        data.set_author(name=name)
-
-    for i in adminlist:
-        await client.send_message(i, embed=data)
-        
-
-
+   
 @client.command()
 async def add(x: int, y: int = 1):
     """Adds 2 numbers together, if the 2nd number is not provided, it will add 1"""
