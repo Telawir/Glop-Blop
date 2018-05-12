@@ -534,8 +534,14 @@ async def delwarn(ctx, *, member : discord.Member = None):
         can_manage_roles = channel.permissions_for(server.me).manage_roles
         role = discord.utils.get(server.roles,name="Ping Warning")  
 
-        if not any(r in user_roles for r in["senior maud", "developer", "quality assurance", "community manager", "kogama staff", "nubmins"]):    
-            return
+        if ctx.message.author.server_permissions.kick_members == False:
+            if ctx.message.author.id == (ownerid):
+                pass
+            else:
+                perm = await client.say(ctx.message.author.mention + " You don't have permission to use this commmand." + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
+                await asyncio.sleep(10)
+                await client.delete_message(perm)
+                return
         
         if member == None:
             ment = await client.say("```" + str(ctx.message.author) +  ", no user mentioned." + '\n' + "-- This message will be deleted automatically in 30 seconds. --```")
