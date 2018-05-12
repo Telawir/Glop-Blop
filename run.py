@@ -942,7 +942,12 @@ async def warn(ctx, member : discord.Member = None, *, reason : str = 1):
             await client.remove_roles(member, warn1role)
         except:
             pass
+        try:
+            msg = await client.send_message(member, str(member) + ", you have been warned. Server name: " + str(server) +'\n' + '\n' + "**Reason: ** ```" + str(reason) + "```")
+        except:
+            pass
         return
+    
     
     if "first warning" in member_roles:
         try:
@@ -957,6 +962,10 @@ async def warn(ctx, member : discord.Member = None, *, reason : str = 1):
             await client.remove_roles(member, warn1role)
         except:
             pass
+        try:
+            msg = await client.send_message(member, str(member) + ", you have been warned. Server name: " + str(server) +'\n' + '\n' + "**Reason: ** ```" + str(reason) + "```")
+        except:
+            pass
         return
     
     else:
@@ -968,6 +977,10 @@ async def warn(ctx, member : discord.Member = None, *, reason : str = 1):
             await client.delete_message(norole1)
             return
         warn = await client.say(":warning: " + (member.mention) + ", you have been warned. This is your first warning." '\n' + '\n' + "**Reason: ** ```" + str(reason) + "```")
+        try:
+            msg = await client.send_message(member, str(member) + ", you have been warned. Server name: " + str(server) +'\n' + '\n' + "**Reason: ** ```" + str(reason) + "```")
+        except:
+            pass
         return    
     
 #t9 - Kicks a Member From The Server
