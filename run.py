@@ -387,9 +387,10 @@ async def mute(ctx, member : discord.Member = None, *, time : str = 0):
             await client.create_role(server, name = belo, colour = colour, hoist = False, mentionable = False)
         except:
             await client.say("Manage Roles permission required.")
+            return
         role = discord.utils.get(server.roles,name="Mute")
-        await client.move_role(server, role, position = 1)
         await client.say("I created Mute role for you. Make sure this role has right position in role hierarchy and then try to mute the user again.")
+        await client.move_role(server, role, position = 1)        
         return
     
     member_roles = [r.name.lower() for r in member.roles] 
