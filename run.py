@@ -460,7 +460,7 @@ async def mute(ctx, member : discord.Member = None, *, time : str = 0):
     member_roles = [r.name.lower() for r in member.roles]
     if "muted" in member_roles:
         await client.remove_roles(member, role)
-        mutestop = await client.say(":loud_sound: **%s** is now Unmuted!"%member.mention)   
+        mutestop = await client.say(":loud_sound: **%s** is now unmuted!"%member.mention)   
     return
 
 
@@ -510,7 +510,7 @@ async def unmute(ctx, *, member : discord.Member = None):
         pass
 
         await client.remove_roles(member, role)
-        await client.say(":loud_sound: **%s** is now Unmuted!"%member.mention)
+        await client.say(":loud_sound: **%s** is now unmuted!"%member.mention)
         
     except Exception as e:
         print (e)
