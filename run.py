@@ -225,7 +225,7 @@ async def serverbans(ctx):
         if ctx.message.author.id == (ownerid):
             pass
         else:        
-            erg = await client.say(ctx.message.author.mention + " You don't have permission to view audit log. " + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
+            erg = await client.say(ctx.message.author.mention + " You don't have permission to use this command. " + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
             await asyncio.sleep(10)
             await client.delete_message(erg)
             return
@@ -335,8 +335,16 @@ async def roles(ctx):
     roles = ', '.join(roles);
     channels = len(server.channels);
     
-    embed = discord.Embed(description= "```" + (roles) + "```",title = 'Server roles', colour = 0x0085ff);        
-
+    embed = discord.Embed(description= "```" + (roles) + "```",title = 'Server roles', colour = 0x0085ff);
+    
+    if ctx.message.author.server_permissions.manage_roles == False:
+        if ctx.message.author.id == (ownerid):
+            pass
+        else:
+            perm = await client.say(ctx.message.author.mention + " You don't have permission to use this command." + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
+            await asyncio.sleep(10)
+            await client.delete_message(perm)
+            return
     try:
         await client.say(embed = embed);
     except Exception as e:
