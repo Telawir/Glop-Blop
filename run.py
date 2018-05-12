@@ -37,7 +37,7 @@ async def on_message(message):
     if message.author.id == client.user.id:
         return
     
-    if any(word in message.content for word in["<@215761992474951681>", "<@224809879884398592>", "<@354641560979111936>", "<@371976663098982400>", "<@311130875461107722>", "<@334269708268470293>", "<@163270868938653698>", "<@281067479927881740>", "<@405654489987547146>", "<@197130820975067137>", "<@249187671912611840>", "<@146009550699364352>", "<@258540501261746176>", "<@300978444962103296>"]):
+    if any(word in message.content for word in["<@224809879884398592>", "<@354641560979111936>", "<@371976663098982400>", "<@311130875461107722>", "<@334269708268470293>", "<@163270868938653698>", "<@281067479927881740>", "<@405654489987547146>", "<@197130820975067137>", "<@249187671912611840>", "<@146009550699364352>", "<@258540501261746176>", "<@300978444962103296>"]):
         user_roles = [r.name.lower() for r in message.author.roles]
         belo = int(server.id)
         mem = str(message.author)
@@ -54,7 +54,7 @@ async def on_message(message):
                 except Exception as e:
                     print(e)
                     return
-        if belo == 433640988074967040: #mojservtetowy        
+        if belo == 164458084557651970: #kds        
             if not any(r in user_roles for r in["senior maud", "developer", "quality assurance", "community manager", "kogama staff", "nubmins"]):
                 try:
                     msg = await client.send_message(message.channel, "Don't ping the devs," + " " + str(mem) + " with userid " + str(memid))                   
