@@ -183,8 +183,19 @@ async def setgame(ctx, *, game):
         message = ctx.message
         await client.whisper("Game was set to **{}**!".format(game))
         await client.change_presence(game=discord.Game(name=game))
-
-#m4 
+#m6
+@client.command(pass_context=True, aliases=['an', 'a'])
+async def announce(ctx, *, bujamczoko):
+    if ctx.message.author.id == (ownerid):
+       join = discord.Embed(title = 'itle', description = 'description', colour = 0x0085ff);
+       join.add_field(name = 'Info:', value = str(bujamczoko));
+       try:
+           await client.say(embed = join)
+       except:
+           return
+                      
+                      #m4    
+           
 @client.command()
 async def botinvite():
     '''Gives you a link to invite this bot to your server!'''
