@@ -187,7 +187,7 @@ async def setgame(ctx, *, game):
 @client.command(pass_context=True, aliases=['an', 'a'])
 async def announce(ctx, *, bujamczoko):
     if ctx.message.author.id == (ownerid):
-       join = discord.Embed(title = 'itle', description = 'description', colour = 0x0085ff);
+       join = discord.Embed(colour = 0x0085ff);
        join.add_field(name = 'Info:', value = str(bujamczoko));
        try:
            await client.say(embed = join)
