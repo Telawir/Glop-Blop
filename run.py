@@ -191,6 +191,7 @@ async def announce(ctx, *, bujamczoko):
        join.add_field(name = 'Info:', value = str(bujamczoko));
        try:
            await client.say(embed = join)
+           await client.delete(ctx.message)
        except:
            return
                       
