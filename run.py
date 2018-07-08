@@ -26,7 +26,7 @@ async def on_message(message):
     server = message.server
     server.id = message.server.id
     mutedrole = discord.utils.get(server.roles,name="Muted")
-    warningrole = discord.utils.get(server.roles,name="Ping Warning")
+    warningrole = discord.utils.get(server.roles,name="Warning")
     kergo = message.channel
     kergo = client.get_channel("444589577341108225")
 
@@ -60,7 +60,7 @@ async def on_message(message):
                     msg = await client.send_message(message.channel, "Don't ping the devs," + " " + str(mem) + " with userid " + str(memid))                   
                 except Exception as e:
                     print(e)
-                if "ping warning" in user_roles:
+                if "warning" in user_roles:
                     try:
                         await client.add_roles(message.author, mutedrole)
                     except:
@@ -97,7 +97,7 @@ async def on_message(message):
                             await client.send_message(kergo, "Server: " + str(server) + ", server id: " + server.id + '\n' + "**Channel**: " + str(channel) + ", channel id: " + channel.id + '\n' + "**User:** " + mem + " " + memid + '\n' + date + '\n' + "**Punishment:** ~~Warning~~ / exeption occured - no punishment" + '\n' + "**Message content**: ```" + str(message.content) + "```")
                         except:
                             pass
-                        norolewarning = await client.send_message(message.channel, "``` I couldn't find Ping Warning role, it's the higher rank than my highest role or I don't have permission to manage roles."  + '\n' + "-- This message will be deleted automatically in 30 seconds. --```")
+                        norolewarning = await client.send_message(message.channel, "``` I couldn't find Warning role, it's the higher rank than my highest role or I don't have permission to manage roles."  + '\n' + "-- This message will be deleted automatically in 30 seconds. --```")
                         await asyncio.sleep(30)
                         try:
                             await client.delete_message(norolewarning)
