@@ -3,7 +3,6 @@ import asyncio
 import config
 import time
 import os
-import pytz
 
 from config import link, prefix, ownerid
 from discord.ext.commands import Bot
@@ -1388,10 +1387,8 @@ async def add(x: int, y: int = 1):
 
 @client.command(pass_context = True)
 async def now(ctx):
-    tz = pytz.timezone('Europe/Berlin')
-    berlin_now = datetime.now(tz)
     colour = discord.Colour.magenta()
-    date = datetime.now(tz).strftime("**Date: **%A, %B %d, %Y\n**Time: **%I:%M:%S %p")
+    date = datetime.now().strftime("**Date: **%A, %B %d, %Y\n**Time: **%I:%M:%S %p")
     embed = discord.Embed(color = colour)
     embed.add_field(name="Bot's System Date & Time", value=date, inline=False)
     await client.say(embed=embed)
