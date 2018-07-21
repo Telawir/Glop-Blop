@@ -786,8 +786,9 @@ async def lockdown(ctx):
             return
         await client.say("The channel has been locked.")
     except Exception as f:
-        await client.say("Unexpected error occured. Error message: ```" + str(f) + "``` If you see this message, please contact Superplus #2392.")
-
+        await client.say(str(f) + "cos sie zepsulo")
+        
+        
 #t6
 @client.command(pass_context = True)
 async def slock(ctx):
