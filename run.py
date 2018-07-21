@@ -726,44 +726,44 @@ async def lockdown(ctx):
     overwrite = discord.PermissionOverwrite()
     user_roles = [r.name.lower() for r in ctx.message.author.roles]
 
-
-    if ctx.message.author.id == (ownerid):
-        pass
-    else:
-        belo = int(server.id)
-        if belo == 433640988074967040: #checks if the command runs on my private server
-            if channel.overwrites_for(ctx.message.author).manage_channels == False:
-                bork = await client.say(ctx.message.author.mention + " You don't have permission to manage this channel." + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
-                await asyncio.sleep(10)
-                try:
-                    await client.delete_message(bork)
-                except:
-                    return
-                return
-            if channel.overwrites_for(ctx.message.author).manage_channels == None:
-                if ctx.message.author.server_permissions.manage_channels == True:
-                    pass
-                else:
-                    korg = await client.say(ctx.message.author.mention + " You don't have permission to manage this channel." + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
+    try:
+        if ctx.message.author.id == (ownerid):
+            pass
+        else:
+            belo = int(server.id)
+            if belo == 433640988074967040: #checks if the command runs on my private server
+                if channel.overwrites_for(ctx.message.author).manage_channels == False:
+                    bork = await client.say(ctx.message.author.mention + " You don't have permission to manage this channel." + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
                     await asyncio.sleep(10)
                     try:
-                        await client.delete_message(korg)
+                        await client.delete_message(bork)
                     except:
                         return
                     return
+                if channel.overwrites_for(ctx.message.author).manage_channels == None:
+                    if ctx.message.author.server_permissions.manage_channels == True:
+                        pass
+                    else:
+                        korg = await client.say(ctx.message.author.mention + " You don't have permission to manage this channel." + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
+                        await asyncio.sleep(10)
+                        try:
+                            await client.delete_message(korg)
+                        except:
+                            return
+                        return
+                else:
+                    pass
             else:
-                pass
-        else:
-            if ctx.message.author.server_permissions.ban_members == False:  
-                borg = await client.say(ctx.message.author.mention + " You don't have permission to use this command." + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
-                await asyncio.sleep(10)
-                try: 
-                    await client.delete_message(borg)
-                except:
-                    return
-                return   
-            else:
-                pass
+                if ctx.message.author.server_permissions.ban_members == False:  
+                    borg = await client.say(ctx.message.author.mention + " You don't have permission to use this command." + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
+                    await asyncio.sleep(10)
+                    try: 
+                        await client.delete_message(borg)
+                    except:
+                        return
+                    return   
+                else:
+                    pass
             
          
     
@@ -776,15 +776,17 @@ async def lockdown(ctx):
          #   await client.delete_message(korg)
           #  return
         
-    overwrite = channel.overwrites_for(roleks)
-    overwrite.send_messages = False
+        overwrite = channel.overwrites_for(roleks)
+        overwrite.send_messages = False
     
-    try:
-        await client.edit_channel_permissions(channel, roleks, overwrite)
-    except Exception as e:
-        await client.say("```" + str(e) + "```")
-        return
-    await client.say("The channel has been locked.")  
+        try:
+            await client.edit_channel_permissions(channel, roleks, overwrite)
+        except Exception as e:
+            await client.say("```" + str(e) + "```")
+            return
+        await client.say("The channel has been locked.")
+    except: Exception as f:
+        await client.say("cos sie zjebalo")
 
 #t6
 @client.command(pass_context = True)
