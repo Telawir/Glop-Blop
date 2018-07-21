@@ -731,7 +731,7 @@ async def lockdown(ctx):
         pass
     else:
         belo = int(server.id)
-        if belo == 359426518730145802: #checks if the command runs on my private server
+        if belo == 433640988074967040: #checks if the command runs on my private server
             if channel.overwrites_for(ctx.message.author).manage_channels == False:
                 bork = await client.say(ctx.message.author.mention + " You don't have permission to manage this channel." + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
                 await asyncio.sleep(10)
@@ -828,7 +828,7 @@ async def unlock(ctx):
         pass
     else:
         belo = int(server.id)
-        if belo == 359426518730145802: #checks if the command runs on my private server
+        if belo == 433640988074967040: #checks if the command runs on my private server
             if channel.overwrites_for(ctx.message.author).manage_channels == False:
                 bork = await client.say(ctx.message.author.mention + " You don't have permission to manage this channel." + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
                 await asyncio.sleep(10)
