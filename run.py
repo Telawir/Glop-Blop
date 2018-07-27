@@ -442,8 +442,13 @@ async def mute(ctx, member : discord.Member = None, *, time : str = 0):
         return
 
     pass
-
-    await client.add_roles(member, role)
+    try:
+        await client.add_roles(member, role)
+    except:
+        rolahigher = await client.say(ctx.message.author.mention +  " Couldn't assign a role to the player. Please check if the bot role is higher in role hierarchy that the Muted role. " + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
+        await asyncio.sleep(10)
+        await client.delete_message(rolahigher)
+        return
     mutestart = await client.say(":mute: **%s** is now muted for "%member.mention + str(time) +" minutes! Wait for an unmute.")
     channel = ctx.message.channel
     
