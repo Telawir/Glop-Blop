@@ -488,7 +488,7 @@ async def mute(ctx, member : discord.Member = None, *, time : str = 0):
             await client.remove_roles(member, role)
         except Exception as e:
             if 'Forbidden' in str(e):
-                miss = await client.say(ctx.message.author.mention + " I tried to unmute" + str(member) + "but I don't have necessary permissions to do so.")
+                miss = await client.say(ctx.message.author.mention + " I tried to unmute **" + str(member) + "** but I don't have necessary permissions to do so.")
                 await asyncio.sleep(10)
                 try:
                     await client.delete_message(miss)
@@ -496,7 +496,7 @@ async def mute(ctx, member : discord.Member = None, *, time : str = 0):
                     return
                 return
             else:
-                miss = await client.say(ctx.message.author.mention + " I tried to unmute" + str(member) + "but I couldn't do so.")
+                miss = await client.say(ctx.message.author.mention + " I tried to unmute **" + str(member) + "** but I couldn't do so.")
                 await asyncio.sleep(10)
                 try:
                     await client.delete_message(miss)
@@ -555,10 +555,18 @@ async def unmute(ctx, *, member : discord.Member = None):
             await client.remove_roles(member, role)
         except Exception as e:
             if 'Forbidden' in str(e):
-                miss = await client.say(ctx.message.author.mention + " I tried to unmute" + str(member) + "but I don't have necessary permissions to do so.")
+                miss = await client.say(ctx.message.author.mention + " I tried to unmute **" + str(member) + "** but I don't have necessary permissions to do so.")
                 await asyncio.sleep(10)
                 try:
                     await client.delete_message(miss)
+                except:
+                    return
+                return
+            else:
+                biss = await client.say(ctx.message.author.mention + " I tried to unmute **" + str(member) + "** but I couldn't do so.")
+                await asyncio.sleep(10)
+                try:
+                    await client.delete_message(biss)
                 except:
                     return
                 return
