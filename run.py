@@ -484,8 +484,26 @@ async def mute(ctx, member : discord.Member = None, *, time : str = 0):
     role = discord.utils.get(server.roles,name="Muted")
     member_roles = [r.name.lower() for r in member.roles]
     if "muted" in member_roles:
-        await client.remove_roles(member, role)
-        mutestop = await client.say(":loud_sound: **%s** is now unmuted!"%member.mention)   
+        try:
+            await client.remove_roles(member, role)
+        except Exception as e:
+            if 'Forbidden' in str(e):
+                miss = await client.say(ctx.message.author.mention + " I tried to unmute" + str(member) + "but I don't have necessary permissions to do so.")
+                await asyncio.sleep(10)
+                try:
+                    await client.delete_message(miss)
+                except:
+                    return
+                return
+            else:
+                miss = await client.say(ctx.message.author.mention + " I tried to unmute" + str(member) + "but I couldn't do so.")
+                await asyncio.sleep(10)
+                try:
+                    await client.delete_message(miss)
+                except:
+                    return
+                return
+        await client.say(":loud_sound: **%s** is now unmuted!"%member.mention)
     return
 
 
@@ -533,14 +551,24 @@ async def unmute(ctx, *, member : discord.Member = None):
             return 
         
         pass
-
-        await client.remove_roles(member, role)
+        try:
+            await client.remove_roles(member, role)
+        except Exception as e:
+            if 'Forbidden' in str(e):
+                miss = await client.say(ctx.message.author.mention + " I tried to unmute" + str(member) + "but I don't have necessary permissions to do so.")
+                await asyncio.sleep(10)
+                try:
+                    await client.delete_message(miss)
+                except:
+                    return
+                return
         await client.say(":loud_sound: **%s** is now unmuted!"%member.mention)
         
     except Exception as e:
         print (e)
         await client.say(e)
-        
+
+#t3        
 @client.command(pass_context = True)
 async def delwarn(ctx, *, member : discord.Member = None):
 
