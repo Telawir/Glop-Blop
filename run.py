@@ -392,6 +392,12 @@ async def mute(ctx, member : discord.Member = None, *, time : str = 0):
         await client.delete_message(ment)
         return
     
+    if member.server_permissions.kick_members == True:
+        duow = await client.say(ctx.message.author.mention +  " I can't mute users with permission to kick members." + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
+        await asyncio.sleep(10)
+        await client.delete_message(duow)
+        return
+    
     if can_manage_roles == False:
         botperm = await client.say(ctx.message.author.mention + " I don't have permission to manage roles." + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
         await asyncio.sleep(10)
