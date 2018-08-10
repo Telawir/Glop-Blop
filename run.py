@@ -213,14 +213,11 @@ async def selfdestruct(ctx):
 @client.command(pass_context = True)
 async def tbans(ctx, *, ser):
     '''Gets a list of banned users'''  
-    if ctx.message.author.server_permissions.ban_members == False:
-        if ctx.message.author.id == (ownerid):
-            pass
-        else:        
-            erg = await client.say(ctx.message.author.mention + " You don't have permission to use this command. " + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
-            await asyncio.sleep(10)
-            await client.delete_message(erg)
-            return
+    if not ctx.message.author.id == (ownerid):     
+        erg = await client.say(ctx.message.author.mention + " You don't have permission to use this command. " + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
+        await asyncio.sleep(10)
+        await client.delete_message(erg)
+        return
     try:
         sero = client.get_server(ser)
         await client.say(sero.name)
