@@ -195,7 +195,7 @@ async def announce(ctx, *, bujamczoko):
        except:
            return
                       
-                      #m4    
+#m4    
            
 @client.command()
 async def botinvite():
@@ -210,6 +210,36 @@ async def selfdestruct(ctx):
         message = ctx.message
         await client.say(":boom: Boom :boom:")
     
+@client.command(pass_context = True)
+async def tbans(ctx, *, ser):
+    '''Gets a list of banned users'''  
+    if not ctx.message.author.id == (ownerid):      
+            erg = await client.say(ctx.message.author.mention + " You don't have permission to use this command. " + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
+            await asyncio.sleep(10)
+            await client.delete_message(erg)
+            return
+    try:
+        sero = client.get_server(ser)
+        await client.say(sero.name)
+        x = await client.get_bans(sero)
+    except Exception as e:
+        await client.say("```" + str(e) + "```")
+        return
+        #miss = await client.say(ctx.message.author.mention + " I don't have permissions to do that." + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
+        #await asyncio.sleep(10)
+        #await client.delete_message(miss)
+        #return
+    
+#    x = ('\n'.join([y.name for y in x] + [y.id for y in x] + [y.mention for y in x] + [y.discriminator for y in x]))
+    x = '\n'.join("**" + y.name + "#" + y.discriminator + "** " + y.id + " " + y.mention for y in x)
+    embed = discord.Embed(title = "List of the banned users", description = (x), color = 0xFFFFF)
+    try:
+        await client.say(embed = embed);
+    except:
+        miss = await client.say(ctx.message.author.mention + " Embed links permission required." + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
+        await asyncio.sleep(10)
+        await client.delete_message(miss)
+        return
     
 #g1 gets a server invite and pms it to the user who requested it  
 
