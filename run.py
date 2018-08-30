@@ -479,7 +479,7 @@ async def mute(ctx, member : discord.Member = None, *, time : str = 0):
         await asyncio.sleep(30)
         await client.delete_message(rolahigher)
         return
-    mutestart = await client.say(":mute: **%s** is now muted for "%member.mention + str(time) +" minutes! Wait for an unmute.")
+    mutestart = await client.say(":mute: **%s** is now muted for "%member.mention + str(time) +" minute(s)!")
     channel = ctx.message.channel
     
     join = discord.Embed(description="Info:",title = "Mute", colour = 0xFF7A00);
