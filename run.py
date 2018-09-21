@@ -292,11 +292,11 @@ async def userinfo(ctx, member : discord.Member=None):
     server = ctx.message.server
     user = ctx.message.author
     
-    joined_at = user.joined_at
+    joined_at = member.joined_at
     user_joined = joined_at.strftime("%d %b %Y %H:%M")
     joined_on = "{}".format(user_joined)
 
-    created_at = user.created_at
+    created_at = member.created_at
     user_created = created_at.strftime("%d %b %Y %H:%M")
     created_on = "{}".format(user_created)
 
