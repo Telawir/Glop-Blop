@@ -595,6 +595,17 @@ async def mute(ctx, member : discord.Member = None, *, time : str = 0):
         
     time = int(60*int(time))
     time = int(time)
+    
+    overwrite = discord.PermissionOverwrite()        
+    overwrite = channel.overwrites_for(role)
+    overwrite.send_messages = False
+    
+    try:
+        for channel in server.channels:
+            await client.edit_channel_permissions(channel, role, overwrite)
+    except Exception as f:
+        pass
+    
     await asyncio.sleep(time)
     role = discord.utils.get(server.roles,name="Muted")
     member_roles = [r.name.lower() for r in member.roles]
