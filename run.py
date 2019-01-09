@@ -521,7 +521,7 @@ async def mute(ctx, member : discord.Member = None, *, time : str = 0):
         belo = str("Muted")
         colour = discord.Colour.dark_grey()
         try:
-            await client.create_role(server, name = belo, colour = colour, hoist = False, mentionable = False)
+            await client.create_role(server, name = belo, colour = colour, hoist = False, mentionable = False, permisions = overwrite)
         except:
             await client.say("Manage Roles permission required.")
             return
