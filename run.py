@@ -611,6 +611,7 @@ async def mute(ctx, member : discord.Member = None, *, time : str = 0):
     overwrite = discord.PermissionOverwrite()        
     overwrite = channel.overwrites_for(role)
     overwrite.send_messages = False
+    overwrite.add_reactions = False
     
     try:
         for channel in server.channels:
