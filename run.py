@@ -54,7 +54,7 @@ async def on_message(message):
                 except Exception as e:
                     print(e)
                     return
-        if belo == 164458084557651970 or belo == 410475208357576705: #kds        
+        if belo == 164458084557651970: #kds        
             if not any(r in user_roles for r in["the grat jatsu", "senior maud", "head maud", "security council", "developer", "quality assurance", "community manager", "kogama staff", "nubmins"]):
                 try:
                     msg = await client.send_message(message.channel, "Don't ping the devs," + " " + str(mem) + " with userid " + str(memid))                   
