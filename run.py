@@ -43,8 +43,8 @@ async def on_message(message):
         mem = str(message.author)
         memid = str(message.author.id)
                 
-        if belo == 359426518730145802: #kogama community
-            if message.author.server_permissions.ban_members == False:
+        if belo == 410475208357576705: #serwer WP
+            if message.author.server_permissions.kick_members == False:
                 try:
                     await client.send_message(kergo, str(server) + server.id + '\n' + "**User:** " + mem + " " + memid + '\n' + date)
                 except:
