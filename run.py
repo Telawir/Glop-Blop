@@ -535,6 +535,8 @@ async def mute(ctx, member : discord.Member = None, *, time : str = 0):
         try:
             await client.edit_role(server, role, colour = colour, permissions = moverwrite)
         except Exception as e:
+            await client.say("Something went wrong or missing permissions")
+            await client.say(e)
             await client.delete_role(server, role)
             return       
 
