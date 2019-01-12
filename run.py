@@ -203,7 +203,7 @@ async def solve(ctx, cte : discord.Channel, number : int, *, mte : str):
         try:
             channel = ctx.message.channel
             message = await client.get_message(channel = cte, id = number)
-            join = discord.Embed(title = ":white_check_mark: Zrobione", description = str(mte), colour = 0x15e254);       
+            join = discord.Embed(title = "Zrobione", description = str(mte), colour = 0x15e254);       
             await client.edit_message(message, embed = join)
             await client.delete_message(ctx.message)      
         except Exception as e:
