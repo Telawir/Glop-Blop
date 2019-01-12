@@ -185,15 +185,16 @@ async def setgame(ctx, *, game):
         await client.change_presence(game=discord.Game(name=game))
 #m6
 @client.command(pass_context=True, aliases=['an', 'a'])
+
 async def announce(ctx, *, bujamczoko):
     if ctx.message.author.id == (ownerid):
-       join = discord.Embed(colour = 0x0085ff);
-       join.add_field(name = 'Info:', value = str(bujamczoko));
-       try:
-           await client.say(embed = join)
-           await client.delete_message(ctx.message)
-       except:
-           return
+        try:
+            join = discord.Embed(title = None, description = str(bujamczoko), colour = 0x0085ff);
+            await client.say(embed = join)
+            await client.delete_message(ctx.message)
+        except Exception as error:
+            await client.say("```css" + '\n' + "[ERROR]" + '\n' + '\n' + str(error) + "```")
+    return
                       
 #m4    
            
