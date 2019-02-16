@@ -29,6 +29,8 @@ async def on_message(message):
     warningrole = discord.utils.get(server.roles,name="Warning")
     kergo = message.channel
     kergo = client.get_channel("444589577341108225")
+    bujajo = message.channel
+    bujajo = client.get_channel("546395210813407262")
 
     date = datetime.now().strftime("**Date: **%A, %B %d, %Y\n**Time: **%I:%M:%S %p")
     
@@ -43,7 +45,7 @@ async def on_message(message):
         mem = str(message.author)
         memid = str(message.author.id)
                 
-        if belo == 410475208357576705: #serwer WP
+        if belo == 5: #test
             if message.author.server_permissions.kick_members == False:
                 try:
                     await client.send_message(kergo, str(server) + server.id + '\n' + "**User:** " + mem + " " + memid + '\n' + date)
@@ -107,7 +109,60 @@ async def on_message(message):
                         await client.send_message(kergo, "Server: " + str(server) + ", server id: " + server.id + '\n' + "**Channel**: " + str(channel) + ", channel id: " + channel.id + '\n' + "**User:** " + mem + " " + memid + '\n' + date + '\n' + "**Punishment:** Warning" + '\n' + "**Message content**: ```" + str(message.content) + "```")
                     except:
                         pass
-                        
+                    
+        if belo == 410475208357576705: #serwer wp        
+            if not any(r in user_roles for r in["moderator", "moderators", "owner", "właściciel", "developer", "quality assurance", "community manager", "kogama staff", "admin", "administrator", "kogama developer"]):
+                try:
+                    msg = await client.send_message(message.channel, "Don't ping the devs," + " " + str(mem) + " with userid " + str(memid))                   
+                except Exception as e:
+                    print(e)
+                if "warning" in user_roles:
+                    try:
+                        await client.add_roles(message.author, mutedrole)
+                    except:
+                        try:
+                            await client.send_message(bujajo, "Server: " + str(server) + ", server id: " + server.id + '\n' + "**Channel**: " + str(channel) + ", channel id: " + channel.id + '\n' + "**User:** " + mem + " " + memid + '\n' + date + '\n' + "**Punishment:** ~~Mute~~ / exeption occured - no punishment" + '\n' + "**Message content**: ```" + str(message.content) + "```")
+                        except:
+                            pass
+                        norolemuted = await client.send_message(message.channel, "``` I can't find Muted role, it's the higher rank than my highest role or I don't have permission to manage roles."  + '\n' + "-- This message will be deleted automatically in 30 seconds. --```")
+                        await asyncio.sleep(30)
+                        try:
+                            await client.delete_message(norolemuted)
+                        except:
+                            return
+                        return
+                    try:
+                        await client.send_message(bujajo, "Server: " + str(server) + ", server id: " + server.id + '\n' + "**Channel**: " + str(channel) + ", channel id: " + channel.id + '\n' + "**User:** " + mem + " " + memid + '\n' + date + '\n' + "**Punishment:** Mute" + '\n' + "**Message content**: ```" + str(message.content) + "```")
+                    except:
+                        pass
+                    warn = await client.send_message(message.channel, message.author.mention + ", you have been muted for disregarding the previous warning and pinging the developer.")
+                    try:
+                        await client.remove_roles(message.author, warningrole)
+                    except:
+                        pass
+                    await asyncio.sleep(600)
+                    try:                        
+                        await client.remove_roles(message.author, mutedrole)
+                    except:
+                        return
+                else:   
+                    try:
+                        await client.add_roles(message.author, warningrole)
+                    except Exception as e:
+                        try:
+                            await client.send_message(bujajo, "Server: " + str(server) + ", server id: " + server.id + '\n' + "**Channel**: " + str(channel) + ", channel id: " + channel.id + '\n' + "**User:** " + mem + " " + memid + '\n' + date + '\n' + "**Punishment:** ~~Warning~~ / exeption occured - no punishment" + '\n' + "**Message content**: ```" + str(message.content) + "```")
+                        except:
+                            pass
+                        norolewarning = await client.send_message(message.channel, "``` I couldn't find Warning role, it's the higher rank than my highest role or I don't have permission to manage roles."  + '\n' + "-- This message will be deleted automatically in 30 seconds. --```")
+                        await asyncio.sleep(30)
+                        try:
+                            await client.delete_message(norolewarning)
+                        except:
+                            return
+                    try:
+                        await client.send_message(bujajo, "Server: " + str(server) + ", server id: " + server.id + '\n' + "**Channel**: " + str(channel) + ", channel id: " + channel.id + '\n' + "**User:** " + mem + " " + memid + '\n' + date + '\n' + "**Punishment:** Warning" + '\n' + "**Message content**: ```" + str(message.content) + "```")
+                    except:
+                        pass                        
     await client.process_commands(message)
 
  ###################################################   
