@@ -5,6 +5,7 @@ import time
 import os
 
 from config import link, prefix, ownerid
+from dontpingthedevslist import nmlist
 from discord.ext.commands import Bot
 from datetime import datetime, timezone
 
@@ -39,7 +40,7 @@ async def on_message(message):
     if message.author.id == client.user.id:
         return
     
-    if any(word in message.content for word in["<@464347218904612884>", "<@453929203897991179>", "<@278537813849538562>", "<@224809879884398592>", "<@354641560979111936>", "<@371976663098982400>", "<@311130875461107722>", "<@334269708268470293>", "<@163270868938653698>", "<@281067479927881740>", "<@405654489987547146>", "<@197130820975067137>", "<@249187671912611840>", "<@146009550699364352>", "<@258540501261746176>", "<@300978444962103296>"]):
+    if any(x in message.content for x in nmlist):
         user_roles = [r.name.lower() for r in message.author.roles]
         belo = int(server.id)
         mem = str(message.author)
