@@ -111,7 +111,7 @@ async def on_message(message):
                     except:
                         pass
                     
-        if belo == 410475208357576705 or belo == 530393867544035338: #serwer wp        
+        if belo == 410475208357576705 or belo == 530393867544035338 or belo == 521034382950268957: #serwer wp        
             if not any(r in user_roles for r in["moderator", "moderators", "owner", "właściciel", "developer", "quality assurance", "community manager", "kogama staff", "admin", "administrator", "kogama developer"]):
                 try:
                     msg = await client.send_message(message.channel, "Don't ping the devs," + " " + str(mem) + " with userid " + str(memid))                   
