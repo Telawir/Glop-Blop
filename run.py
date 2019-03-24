@@ -254,9 +254,15 @@ async def announce(ctx, *, bujamczoko):
 
 #niepubliczne1
 @client.command(pass_context=True, aliases=['so', 's'])
-async def solve(ctx, cte : discord.Channel, number : int, *, mte : str):
+async def solve(ctx, cte : discord.Channel, *, number : int, mte : str):
     if ctx.message.author.id == (ownerid):
         try:
+            if not cte:
+                await client.say("ups")
+            if not number:
+                await client.say("ojej")
+            if not mte:
+                await client.say("aha")
             channel = ctx.message.channel
             message = await client.get_message(channel = cte, id = number)
             join = discord.Embed(title = "Zrobione", description = str(mte), colour = 0x15e254);       
