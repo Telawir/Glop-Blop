@@ -359,7 +359,7 @@ async def serverbans(ctx):
 @client.command(pass_context = True)
 async def userinfo(ctx, member : discord.Member=None):
     '''Displays Info About The User ----- WORK IN PROGRESS! '\n' '''
-   try: 
+   if 0 == 0:
     
         if member == None:
             nous = await client.say(ctx.message.author.mention + " No user mentioned." + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
@@ -472,8 +472,8 @@ async def userinfo(ctx, member : discord.Member=None):
             await asyncio.sleep(10)
             await client.delete_message(miss)
             return  
-    except:
-        await client.say("An error occured. It's likely because I couldn't find this user")
+    #except:
+    #    await client.say("An error occured. It's likely because I couldn't find this user")
 
 #g4 - Lists Info About The server
 
