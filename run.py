@@ -254,25 +254,18 @@ async def announce(ctx, *, bujamczoko):
 
 #niepubliczne1
 @client.command(pass_context=True, aliases=['so', 's'])
-async def solve(ctx, cte : discord.Channel, *, number : int, mte : str):
+async def solve(ctx, cte : discord.Channel, number : int, *, mte : str):
     if ctx.message.author.id == (ownerid):
         try:
-            if not cte:
-                await client.say("ups")
-            if not number:
-                await client.say("ojej")
-            if not mte:
-                await client.say("aha")
-            channel = ctx.message.channel
             message = await client.get_message(channel = cte, id = number)
-            join = discord.Embed(title = "Zrobione", description = str(mte), colour = 0x15e254);       
-            await client.edit_message(message, embed = join)
-            await client.delete_message(ctx.message)      
-        except Exception as e:
+            join = discord.Embed(title = ":white_check_mark: Zrobione", description = str(mte), colour = 0x15e254);
+            await client.say(embed = join)        
+            await client.edit_message(message, embed = join)       
+            await client.delete_message(ctx.message)       
+        except Exception as error:
             await client.say("```css" + '\n' + "[ERROR]" + '\n' + '\n' + "{AN ERROR OCCURED: " + str(error) + "}```")
-    else:
-        return
-
+        return    
+    
 #m4    
            
 @client.command()
