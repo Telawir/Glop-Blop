@@ -359,118 +359,121 @@ async def serverbans(ctx):
 @client.command(pass_context = True)
 async def userinfo(ctx, member : discord.Member=None):
     '''Displays Info About The User ----- WORK IN PROGRESS! '\n' '''
+   try: 
     
-    if member == None:
-        nous = await client.say(ctx.message.author.mention + " No user mentioned." + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
-        await asyncio.sleep(10)
-        await client.delete_message(nous)
-        return   
+        if member == None:
+            nous = await client.say(ctx.message.author.mention + " No user mentioned." + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
+            await asyncio.sleep(10)
+            await client.delete_message(nous)
+            return   
     
-    server = ctx.message.server
-    user = ctx.message.author
+        server = ctx.message.server
+        user = ctx.message.author
     
-    joined_at = member.joined_at
-    user_joined = joined_at.strftime("%d %b %Y %H:%M")
-    joined_on = "{}".format(user_joined)
+        joined_at = member.joined_at
+        user_joined = joined_at.strftime("%d %b %Y %H:%M")
+        joined_on = "{}".format(user_joined)
 
-    created_at = member.created_at
-    user_created = created_at.strftime("%d %b %Y %H:%M")
-    created_on = "{}".format(user_created)
+        created_at = member.created_at
+        user_created = created_at.strftime("%d %b %Y %H:%M")
+        created_on = "{}".format(user_created)
 
-    roles = [x.name for x in member.roles]
-    roles = ', '.join(roles)
+        roles = [x.name for x in member.roles]
+        roles = ', '.join(roles)
     
 ######### NIE ZMIENIAC NIC PONIZEJ #################
     
-    def getKey2(item):
-        return item[1]
-    def getKey1(item):
-        return item[0]
-    perms = tuple([x for x in member.server_permissions])
-    bergo=[]
-    for x in member.server_permissions:
-        if(getKey2(x)) == True:
-            if(getKey1(x)) == "add_reactions":
-                bergo.append("add reactions")
-            if(getKey1(x)) == "administrator":
-                bergo.append("administrator")
-            if(getKey1(x)) == "attach_files":
-                bergo.append("attach files")
-            if(getKey1(x)) == "ban_members":
-                bergo.append("ban members")
-            if(getKey1(x)) == "change_nickname":
-                bergo.append("change nickname")
-            if(getKey1(x)) == "connect":
-                bergo.append("connect")
-            if(getKey1(x)) == "create_instant_invite":
-                bergo.append("create instant invite")
-            if(getKey1(x)) == "deafen_members":
-                bergo.append("deafen members")
-            if(getKey1(x)) == "embed_links":
-                bergo.append("embed links")
-            if(getKey1(x)) == "external_emojis":
-                bergo.append("external emojis")
-            if(getKey1(x)) == "kick_members":
-                bergo.append("kick members")
-            if(getKey1(x)) == "manage_channels":
-                bergo.append("manage channels")
-            if(getKey1(x)) == "manage_emojis":
-                bergo.append("manage emojis")
-            if(getKey1(x)) == "manage_messages":
-                bergo.append("manage messages")
-            if(getKey1(x)) == "manage_nicknames":
-                bergo.append("manage nicknames")
-            if(getKey1(x)) == "manage_roles":
-                bergo.append("manage roles")
-            if(getKey1(x)) == "manage_server":
-                bergo.append("manage server")
-            if(getKey1(x)) == "manage_webhooks":
-                bergo.append("manage webhooks")
-            if(getKey1(x)) == "mention_everyone":
-                bergo.append("mention everyone")
-            if(getKey1(x)) == "move_members":
-                bergo.append("move members")
-            if(getKey1(x)) == "mute_members":
-                bergo.append("mute members")
-            if(getKey1(x)) == "read_message_history":
-                bergo.append("read message history")
-            if(getKey1(x)) == "read_messages":
-                bergo.append("read messages")
-            if(getKey1(x)) == "send_messages":
-                bergo.append("send messages")
-            if(getKey1(x)) == "send_tts_messages":
-                bergo.append("send tts messages")
-            if(getKey1(x)) == "speak":
-                bergo.append("speak")
-            if(getKey1(x)) == "use_voice_activation":
-                bergo.append("use voice activation")
-            if(getKey1(x)) == "view_audit_logs":
-                bergo.append("view audit logs")
-                #bergo.append(getKey1(x))
-            myString = "*"+ '*, *'.join(bergo) + "*";
+        def getKey2(item):
+            return item[1]
+        def getKey1(item):
+            return item[0]
+        perms = tuple([x for x in member.server_permissions])
+        bergo=[]
+        for x in member.server_permissions:
+            if(getKey2(x)) == True:
+                if(getKey1(x)) == "add_reactions":
+                    bergo.append("add reactions")
+                if(getKey1(x)) == "administrator":
+                    bergo.append("administrator")
+                if(getKey1(x)) == "attach_files":
+                    bergo.append("attach files")
+                if(getKey1(x)) == "ban_members":
+                    bergo.append("ban members")
+                if(getKey1(x)) == "change_nickname":
+                    bergo.append("change nickname")
+                if(getKey1(x)) == "connect":
+                    bergo.append("connect")
+                if(getKey1(x)) == "create_instant_invite":
+                    bergo.append("create instant invite")
+                if(getKey1(x)) == "deafen_members":
+                    bergo.append("deafen members")
+                if(getKey1(x)) == "embed_links":
+                    bergo.append("embed links")
+                if(getKey1(x)) == "external_emojis":
+                    bergo.append("external emojis")
+                if(getKey1(x)) == "kick_members":
+                    bergo.append("kick members")
+                if(getKey1(x)) == "manage_channels":
+                    bergo.append("manage channels")
+                if(getKey1(x)) == "manage_emojis":
+                    bergo.append("manage emojis")
+                if(getKey1(x)) == "manage_messages":
+                    bergo.append("manage messages")
+                if(getKey1(x)) == "manage_nicknames":
+                    bergo.append("manage nicknames")
+                if(getKey1(x)) == "manage_roles":
+                    bergo.append("manage roles")
+                if(getKey1(x)) == "manage_server":
+                    bergo.append("manage server")
+                if(getKey1(x)) == "manage_webhooks":
+                    bergo.append("manage webhooks")
+                if(getKey1(x)) == "mention_everyone":
+                    bergo.append("mention everyone")
+                if(getKey1(x)) == "move_members":
+                    bergo.append("move members")
+                if(getKey1(x)) == "mute_members":
+                    bergo.append("mute members")
+                if(getKey1(x)) == "read_message_history":
+                    bergo.append("read message history")
+                if(getKey1(x)) == "read_messages":
+                    bergo.append("read messages")
+                if(getKey1(x)) == "send_messages":
+                    bergo.append("send messages")
+                if(getKey1(x)) == "send_tts_messages":
+                    bergo.append("send tts messages")
+                if(getKey1(x)) == "speak":
+                    bergo.append("speak")
+                if(getKey1(x)) == "use_voice_activation":
+                    bergo.append("use voice activation")
+                if(getKey1(x)) == "view_audit_logs":
+                    bergo.append("view audit logs")
+                    #bergo.append(getKey1(x))
+                myString = "*"+ '*, *'.join(bergo) + "*";
             
 ######### NIE ZMIENIAC NIC POWYZEJ #################
            
 
      
    
-    emb = discord.Embed(title= '%s '%str(member), description = member.mention + ' (ID: ' + str(member.id) + ')', colour = 0x0085ff);
-    emb.set_thumbnail(url = member.avatar_url);
-    emb.add_field(name = '__Joined Server__', value = joined_on);
-    emb.add_field(name = '__Created Account__', value = created_on)
-    emb.add_field(name = '__Status__', value = member.status);
-    emb.add_field(name = '__Game__', value = member.game);
-    emb.add_field(name = '__Server permissions__', value = str(myString));
-    emb.add_field(name = '__Roles__', value = "```" + str(roles) + "```");
-    emb.set_footer(text = 'Requested by: ' + str(user) + " (ID: "+ str(user.id) + ")" );
+        emb = discord.Embed(title= '%s '%str(member), description = member.mention + ' (ID: ' + str(member.id) + ')', colour = 0x0085ff);
+        emb.set_thumbnail(url = member.avatar_url);
+        emb.add_field(name = '__Joined Server__', value = joined_on);
+        emb.add_field(name = '__Created Account__', value = created_on)
+        emb.add_field(name = '__Status__', value = member.status);
+        emb.add_field(name = '__Game__', value = member.game);
+        emb.add_field(name = '__Server permissions__', value = str(myString));
+        emb.add_field(name = '__Roles__', value = "```" + str(roles) + "```");
+        emb.set_footer(text = 'Requested by: ' + str(user) + " (ID: "+ str(user.id) + ")" );
 
-    try:
-        await client.say(embed = emb);
+        try:
+            await client.say(embed = emb);
+        except:
+            miss = await client.say(ctx.message.author.mention + " Embed links permission required or embed is too big." + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
+            await asyncio.sleep(10)
+            await client.delete_message(miss)
+            return  
     except:
-        miss = await client.say(ctx.message.author.mention + " Embed links permission required or embed is too big." + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
-        await asyncio.sleep(10)
-        await client.delete_message(miss)
-        return    
+        await client.say("An error occured. It's likely because I couldn't find this user")
 
 #g4 - Lists Info About The server
 
