@@ -359,7 +359,13 @@ async def serverbans(ctx):
 @client.command(pass_context = True)
 async def userinfo(ctx, member : discord.Member=None):
     '''Displays Info About The User ----- WORK IN PROGRESS! '\n' '''
-
+    
+    if member == None:
+        nous = await client.say(ctx.message.author.mention + " No user mentioned." + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
+        await asyncio.sleep(10)
+        await client.delete_message(nous)
+        return   
+    
     server = ctx.message.server
     user = ctx.message.author
     
@@ -446,11 +452,7 @@ async def userinfo(ctx, member : discord.Member=None):
 ######### NIE ZMIENIAC NIC POWYZEJ #################
            
 
-    if member == None:
-        nous = await client.say(ctx.message.author.mention + " No user mentioned." + '\n' + "-- This message will be deleted automatically in 10 seconds. --")
-        await asyncio.sleep(10)
-        await client.delete_message(nous)
-        return     
+     
    
     emb = discord.Embed(title= '%s '%str(member), description = member.mention + ' (ID: ' + str(member.id) + ')', colour = 0x0085ff);
     emb.set_thumbnail(url = member.avatar_url);
