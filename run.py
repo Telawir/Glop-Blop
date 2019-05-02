@@ -586,34 +586,45 @@ async def mute(ctx, member : discord.Member = None, *, time : str = 0):
         return
     
     if not role:
-        await client.say("I can't find Muted role. I'll create it for you.")
-        roleks = server.default_role        
+        kesza = await client.say("I can't find Muted role. I'll create it for you.")
+        roleks = server.default_role
         overwrite = discord.PermissionOverwrite()
         overwrite = server.default_role.permissions
         overwrite.send_messages = False
         belo = str("Muted")
         colour = discord.Colour.dark_grey()
-        try:
-            await client.create_role(server, name = belo, colour = colour, hoist = False, mentionable = False, permisions = overwrite)
-        except:
-            await client.say("Manage Roles permission required.")
-            return
-        
         role = discord.utils.get(server.roles,name="Muted")
+        try:
+            await client.create_role(server, name = belo, colour = colour, hoist = False, mentionable = False)
+        except Exception as e:
+            try:
+                await client.edit_message(kesza,"Something went wrong, it's likely that someone deleted the role. Please try to use the command again or contact Superplus#2392. // Error code: 'mute-1'")
+            except:
+                pass
+            return
+        try:        
+            await client.edit_message(kesza, "Role has been created. Wait for me to edit it and change its permissions.")
+        except:
+            pass
+        await asyncio.sleep(2)
+        role = discord.utils.get(server.roles,name="Muted")        
         moverwrite = discord.PermissionOverwrite()
         moverwrite = server.default_role.permissions
         moverwrite.send_messages = False
-        moverwrite.add_reactions = False
+        await asyncio.sleep(2)
         try:
-            await client.edit_role(server, role, colour = colour, permissions = moverwrite)
+            await client.edit_role(server, role, colour = colour, permissions = moverwrite)            
         except Exception as e:
-            await client.say("Something went wrong or missing permissions")
-            await client.say(e)
+            await client.say("Something went wrong, it's likely that someone deleted the role. Please try to use the command again or contact Superplus#2392. // Error code: 'mute-2'")
             await client.delete_role(server, role)
-            return       
-
-        await client.say("I created Muted role for you. Make sure this role has right position in role hierarchy and then try to mute the user again.")
-        await client.move_role(server, role, position = 1)        
+            return
+        try:
+            await client.edit_message(kesza, "Role permissions have been changed.")
+        except:
+            pass
+        await asyncio.sleep(2)  
+        await client.edit_message(kesza, "I created Muted role for you. Make sure this role has right position in role hierarchy and try to mute the user again if they haven't been muted yet.")
+        await client.move_role(server, role, position = 1)              
         return
     role = discord.utils.get(server.roles,name="Muted")
     member_roles = [r.name.lower() for r in member.roles] 
@@ -687,9 +698,18 @@ async def mute(ctx, member : discord.Member = None, *, time : str = 0):
     overwrite.send_messages = False
     overwrite.add_reactions = False
     
+    overwritebot = channel.overwrites_for(server.me)
+    overwritebot.send_messages = True     
+    
     try:
         for channel in server.channels:
             await client.edit_channel_permissions(channel, role, overwrite)
+    except Exception as f:
+        pass
+    
+    try:
+        for channel in server.channels:
+          await client.edit_channel_permissions(channel, server.me, overwritebot)
     except Exception as f:
         pass
     
