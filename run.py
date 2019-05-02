@@ -625,7 +625,6 @@ async def mute(ctx, member : discord.Member = None, *, time : str = 0):
         await asyncio.sleep(2)  
         await client.edit_message(kesza, "I created Muted role for you. Make sure this role has right position in role hierarchy and try to mute the user again if they haven't been muted yet.")
         await client.move_role(server, role, position = 1)              
-        return
     role = discord.utils.get(server.roles,name="Muted")
     member_roles = [r.name.lower() for r in member.roles] 
     if "muted" in member_roles:
