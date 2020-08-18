@@ -1361,4 +1361,4 @@ async def now(ctx):
     await client.say(embed=embed)
 #must import os
 
-client.run(token) 
+client.run(os.getenv('TOKEN'))  
