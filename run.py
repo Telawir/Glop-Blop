@@ -231,7 +231,7 @@ async def ping(ctx):
 @client.command(pass_context=True)
 async def setgame(ctx, *, game):
     if ctx.message.author.id == ownerid:
-        await client.change_presence(activity=discord.Game(name=game))
+        await client.change_presence(status=discord.Status.dnd, activity=discord.Game(name=game))
         try:
             await ctx.message.delete()
             await ctx.message.author.send("Game was set to **{}**!".format(game))
