@@ -1,8 +1,8 @@
-discord.py==1.5.1
+discord.py==1.5.1 --uninstall yarl
 aiohttp
 websockets
 chardet
 datetime
 asyncio
-pip uninstall yarl
+
 
