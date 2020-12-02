@@ -4,3 +4,5 @@ websockets
 chardet
 datetime
 asyncio
+yarl==1.4.2 --uninstall
+
