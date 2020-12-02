@@ -1,4 +1,5 @@
 discord.py==1.5.1
+aiohttp
 websockets
 chardet
 datetime
