@@ -11,7 +11,8 @@ from discord.ext.commands import Bot
 from discord.ext import commands
 from datetime import datetime, timezone, timedelta
 
-client = Bot(prefix)
+intents = discord.Intents.all()
+client = commands.Bot(command_prefix=(prefix),intents=intents)
 client.remove_command('help')
 
 @client.event
